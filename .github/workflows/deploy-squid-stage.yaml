@@ -7,7 +7,7 @@ on:
       - 'packages/squid/**'
       - '.github/workflows/deploy-squid-stage.yaml'
     branches:
-      - main
+      - polkadot
       # - ci/* # run this workflow if the branch starts with ci/*
 
 env:
@@ -70,7 +70,7 @@ jobs:
     runs-on: self-hosted
     strategy:
       matrix:
-        network: ['rococo', 'kusama']
+        network: ['polkadot' ] #'rococo', #'kusama']
 
     permissions:
       contents: read
