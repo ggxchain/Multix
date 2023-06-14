@@ -4,7 +4,7 @@
 import type { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types';
 import type { TypeDef } from '@polkadot/types/types';
 import type { ComponentMap, RawParam } from '../types.js';
-
+import type {ApiPromise} from '@polkadot/api'
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { InputExtrinsic } from '@polkadot/react-components';
@@ -16,6 +16,7 @@ import paramComponents from '../Extra/index.js';
 import { balanceCalls, balanceCallsOverrides } from '../overrides.js';
 
 interface Props {
+  api: ApiPromise
   className?: string;
   defaultArgs?: RawParam[];
   defaultValue: SubmittableExtrinsicFunction<'promise'>;
@@ -78,7 +79,7 @@ function getCallState (fn: SubmittableExtrinsicFunction<'promise'>, values: RawP
   };
 }
 
-function ExtrinsicDisplay ({ defaultArgs, defaultValue, filter, isDisabled, isError, isPrivate, label, onChange, onEnter, onError, onEscape, withLabel }: Props): React.ReactElement<Props> {
+function ExtrinsicDisplay ({ api, defaultArgs, defaultValue, filter, isDisabled, isError, isPrivate, label, onChange, onEnter, onError, onEscape, withLabel }: Props): React.ReactElement<Props> {
   const [{ extrinsic, values }, setDisplay] = useState<CallState>(() => getCallState(defaultValue, defaultArgs));
 
   useEffect((): void => {
@@ -126,6 +127,7 @@ function ExtrinsicDisplay ({ defaultArgs, defaultValue, filter, isDisabled, isEr
   return (
     <div className='extrinsics--Extrinsic'>
       <InputExtrinsic
+        api={api}
         defaultValue={defaultValue}
         filter={filter}
         isDisabled={isDisabled}
@@ -143,6 +145,7 @@ function ExtrinsicDisplay ({ defaultArgs, defaultValue, filter, isDisabled, isEr
         overrides={overrides}
         params={params}
         values={values}
+        registry={api.registry}
       />
     </div>
   );
