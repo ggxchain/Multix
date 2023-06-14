@@ -1,11 +1,12 @@
 {
+  "baseUrl": "./",
   "compilerOptions": {
     "paths": {
-        "@polkadot/react-components": ["./packages/react-components/src/index.tsx"],
-        "@polkadot/react-hooks": ["./packages/react-hooks/src/index.tsx"],
-        "@polkadot/react-params": ["./packages/react-params/src/index.tsx"],
-        "@polkadot/react-query": ["./packages/react-query/src/index.tsx"],
-        "@polkadot/react-signer": ["./packages/react-signer/src/index.tsx"],
+        "@polkadot/react-components": ["./packages/react-components/src/"],
+        "@polkadot/react-hooks": ["./packages/react-hooks/src/"],
+        "@polkadot/react-params": ["./packages/react-params/src/"],
+        "@polkadot/react-query": ["./packages/react-query/src/"],
+        "@polkadot/react-signer": ["./packages/react-signer/src/"],
     }
   }
 }

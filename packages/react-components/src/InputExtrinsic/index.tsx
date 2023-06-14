@@ -3,10 +3,9 @@
 
 import type { SubmittableExtrinsicFunction } from '@polkadot/api/types';
 import type { DropdownOptions } from '../util/types.js';
+import { ApiPromise } from '@polkadot/api';
 
 import React, { useCallback, useState } from 'react';
-
-import { useApi } from '@polkadot/react-hooks';
 
 import methodOptions from './options/method.js';
 import sectionOptions from './options/section.js';
@@ -15,6 +14,7 @@ import SelectMethod from './SelectMethod.js';
 import SelectSection from './SelectSection.js';
 
 interface Props {
+  api: ApiPromise
   className?: string;
   defaultValue: SubmittableExtrinsicFunction<'promise'>;
   filter?: (section: string, method?: string) => boolean;
@@ -26,8 +26,7 @@ interface Props {
   withLabel?: boolean;
 }
 
-function InputExtrinsic ({ className = '', defaultValue, filter, isDisabled, label, onChange, withLabel }: Props): React.ReactElement<Props> {
-  const { api } = useApi();
+function InputExtrinsic ({ api, className = '', defaultValue, filter, isDisabled, label, onChange, withLabel }: Props): React.ReactElement<Props> {
   const [optionsMethod, setOptionsMethod] = useState<DropdownOptions>(() => methodOptions(api, defaultValue.section, filter));
   const [optionsSection] = useState<DropdownOptions>(() => sectionOptions(api, filter));
   const [value, setValue] = useState<SubmittableExtrinsicFunction<'promise'>>((): SubmittableExtrinsicFunction<'promise'> => defaultValue);

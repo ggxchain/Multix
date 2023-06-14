@@ -1,11 +1,11 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { SubmittableExtrinsic } from '@polkadot/api/types'
-import { ISubmittableResult } from '@polkadot/types/types'
+import { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types'
+import { AnyTuple, ISubmittableResult } from '@polkadot/types/types'
 import React, { useCallback, useState } from 'react'
 import { useApi } from '../../contexts/ApiContext'
-import { Extrinsic, Output } from '@polkadot/react-components'
-import { Call } from '@polkadot/types/interfaces'
+import { InputExtrinsic, Output } from '@polkadot/react-components'
+import 'semantic-ui-css/semantic.min.css'
 
 interface Props {
   extrinsicIndex?: string
@@ -28,16 +28,16 @@ const ManualExtrinsic = ({
   console.log('hexCallData', hexCallData)
 
   const onExtrinsicChange = useCallback(
-    (ext?: Call | undefined) => {
+    (ext?: SubmittableExtrinsicFunction<'promise', AnyTuple>) => {
       setIsBusy(true)
-
+      console.log('ext', ext)
       if (!ext) {
         setIsBusy(false)
         return onSetExtrinsic(undefined)
       }
 
-      setHexCallData(ext.method.toHex())
-      setHexCallHash(ext.method.hash.toHex())
+      // setHexCallData(ext.method.toHex())
+      // setHexCallHash(ext.method.hash.toHex())
       setIsBusy(false)
 
       onSetExtrinsic(ext)
@@ -50,12 +50,13 @@ const ManualExtrinsic = ({
     [onSetErrorMessage]
   )
 
-  if (!api || !isApiReady) return null
+  if (!api || !isApiReady || !InputExtrinsic || !Output) return null
 
   return (
     <Box className={className}>
-      <Extrinsic
-        defaultValue={api.createType('Call', api.tx.system.setCode) as any}
+      <InputExtrinsic
+        api={api}
+        defaultValue={api.tx.system.setCode}
         label="submit the following extrinsic"
         onChange={onExtrinsicChange}
         // onError={onExtrinsicError}
@@ -65,7 +66,6 @@ const ManualExtrinsic = ({
         value={hexCallData}
         withCopy
       />
-
       <Output
         label="encoded call hash"
         value={hexCallHash}
