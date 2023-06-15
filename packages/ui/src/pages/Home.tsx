@@ -34,18 +34,25 @@ interface Props {
 interface MultisigActionMenuProps {
   setIsSendModalOpen: (isOpen: boolean) => void
   options: MenuOption[]
+  withSendButton?: boolean
 }
 
-const MultisigActionMenu = ({ setIsSendModalOpen, options }: MultisigActionMenuProps) => {
+const MultisigActionMenu = ({
+  setIsSendModalOpen,
+  options,
+  withSendButton = true
+}: MultisigActionMenuProps) => {
   return (
     <>
-      <ButtonWithIcon
-        aria-label="send"
-        onClick={() => setIsSendModalOpen(true)}
-      >
-        <HiOutlinePaperAirplaneStyled />
-        Send
-      </ButtonWithIcon>
+      {withSendButton && (
+        <ButtonWithIcon
+          aria-label="send"
+          onClick={() => setIsSendModalOpen(true)}
+        >
+          <HiOutlinePaperAirplaneStyled />
+          Send
+        </ButtonWithIcon>
+      )}
       <OptionsMenu options={options} />
     </>
   )
@@ -215,18 +222,16 @@ const Home = ({ className }: Props) => {
           {creationInProgress ? (
             <SuccessCreation />
           ) : (
-            <div>
+            <WrapperConnectButtonStyled>
               No multisig found for your accounts.{' '}
               {isAllowedToConnectToExtension ? (
-                <>
-                  <RouterLink to="/create">Create one</RouterLink>
-                </>
+                <Button onClick={() => navigate('/create')}>Create one</Button>
               ) : (
                 <Button onClick={allowConnectionToExtension}>Connect Wallet</Button>
               )}
               or
-              <RouterLink to="/settings">Watch one</RouterLink>
-            </div>
+              <Button onClick={() => navigate('/settings')}>Watch one</Button>
+            </WrapperConnectButtonStyled>
           )}
         </Box>
       </Grid>
@@ -262,6 +267,7 @@ const Home = ({ className }: Props) => {
                     <MultisigActionMenu
                       setIsSendModalOpen={setIsSendModalOpen}
                       options={options}
+                      withSendButton={!selectedIsWatched}
                     />
                   </BoxStyled>
                 </div>
