@@ -2,11 +2,11 @@
   "baseUrl": "./",
   "compilerOptions": {
     "paths": {
-        "@polkadot/react-components": ["./packages/react-components/src/"],
-        "@polkadot/react-hooks": ["./packages/react-hooks/src/"],
-        "@polkadot/react-params": ["./packages/react-params/src/"],
-        "@polkadot/react-query": ["./packages/react-query/src/"],
-        "@polkadot/react-signer": ["./packages/react-signer/src/"],
+        "@polkadot/react-components": ["./packages/polkadot-js-packages/react-components/src/"],
+        "@polkadot/react-hooks": ["./packages/polkadot-js-packages/react-hooks/src/"],
+        "@polkadot/react-params": ["./packages/polkadot-js-packages/react-params/src/"],
+        "@polkadot/react-query": ["./packages/polkadot-js-packages/react-query/src/"],
+        "@polkadot/react-signer": ["./packages/polkadot-js-packages/react-signer/src/"],
     }
   }
 }

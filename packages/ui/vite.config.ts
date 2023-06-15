@@ -23,18 +23,42 @@ export default defineConfig({
   resolve: {
     preserveSymlinks: true,
     alias: {
-      '@polkadot/react-components': path.resolve(__dirname, '../react-components/src'),
-      '@polkadot/react-hooks': path.resolve(__dirname, '../react-hooks/src'),
-      '@polkadot/react-params': path.resolve(__dirname, '../react-params/src'),
-      '@polkadot/react-query': path.resolve(__dirname, '../react-query/src'),
-      '@polkadot/react-signer': path.resolve(__dirname, '../react-signer/src'),
-      '@polkadot/react-api/statics': path.resolve(__dirname, '../react-api/src/statics.ts'),
-      '@polkadot/react-api/hoc': path.resolve(__dirname, '../react-api/src/hoc'),
-      '@polkadot/react-components/*': path.resolve(__dirname, '../react-components/src/*'),
-      '@polkadot/react-hooks/*': path.resolve(__dirname, '../react-hooks/src/*'),
-      '@polkadot/react-params/*': path.resolve(__dirname, '../react-params/src/*'),
-      '@polkadot/react-query/*': path.resolve(__dirname, '../react-query/src/*'),
-      '@polkadot/react-signer/*': path.resolve(__dirname, '../react-signer/src/*')
+      '@polkadot/react-components': path.resolve(
+        __dirname,
+        '../polkadot-js-packages/react-components/src'
+      ),
+      '@polkadot/react-hooks': path.resolve(__dirname, '../polkadot-js-packages/react-hooks/src'),
+      '@polkadot/react-params': path.resolve(__dirname, '../polkadot-js-packages/react-params/src'),
+      '@polkadot/react-query': path.resolve(__dirname, '../polkadot-js-packages/react-query/src'),
+      '@polkadot/react-signer': path.resolve(__dirname, '../polkadot-js-packages/react-signer/src'),
+      '@polkadot/react-api/statics': path.resolve(
+        __dirname,
+        '../polkadot-js-packages/react-api/src/statics.ts'
+      ),
+      '@polkadot/react-api/hoc': path.resolve(
+        __dirname,
+        '../polkadot-js-packages/react-api/src/hoc'
+      ),
+      '@polkadot/react-components/*': path.resolve(
+        __dirname,
+        '../polkadot-js-packages/react-components/src/*'
+      ),
+      '@polkadot/react-hooks/*': path.resolve(
+        __dirname,
+        '../polkadot-js-packages/react-hooks/src/*'
+      ),
+      '@polkadot/react-params/*': path.resolve(
+        __dirname,
+        '../polkadot-js-packages/react-params/src/*'
+      ),
+      '@polkadot/react-query/*': path.resolve(
+        __dirname,
+        '../polkadot-js-packages/react-query/src/*'
+      ),
+      '@polkadot/react-signer/*': path.resolve(
+        __dirname,
+        '../polkadot-js-packages/react-signer/src/*'
+      )
     }
   },
   optimizeDeps: {

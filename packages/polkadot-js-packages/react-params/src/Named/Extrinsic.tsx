@@ -70,6 +70,7 @@ function getParams ({ meta }: SubmittableExtrinsicFunction<'promise'>): ParamDef
 }
 
 function getCallState (fn: SubmittableExtrinsicFunction<'promise'>, values: RawParam[] = []): CallState {
+  console.log('fn', fn)
   return {
     extrinsic: {
       fn,
@@ -80,6 +81,8 @@ function getCallState (fn: SubmittableExtrinsicFunction<'promise'>, values: RawP
 }
 
 function ExtrinsicDisplay ({ api, defaultArgs, defaultValue, filter, isDisabled, isError, isPrivate, label, onChange, onEnter, onError, onEscape, withLabel }: Props): React.ReactElement<Props> {
+  console.log('defaultArgs', defaultArgs)
+  console.log('defaultValue', defaultValue)
   const [{ extrinsic, values }, setDisplay] = useState<CallState>(() => getCallState(defaultValue, defaultArgs));
 
   useEffect((): void => {
@@ -107,12 +110,13 @@ function ExtrinsicDisplay ({ api, defaultArgs, defaultValue, filter, isDisabled,
   );
 
   const _onChangeMethod = useCallback(
-    (fn: SubmittableExtrinsicFunction<'promise'>) =>
-      setDisplay((prev): CallState =>
+    (fn: SubmittableExtrinsicFunction<'promise'>) =>{
+      console.log('on change', fn)
+      return setDisplay((prev): CallState =>
         fn.section === prev.extrinsic.fn.section && fn.method === prev.extrinsic.fn.method
           ? prev
           : getCallState(fn)
-      ),
+      )},
     []
   );
 
