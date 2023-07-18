@@ -34,3 +34,6 @@ deploy:
     cmd: ['npx', 'squid-graphql-server', '--subscriptions']
 scale:
   dedicated: true
+  addons:
+    postgres:
+      profile: medium
