@@ -36,6 +36,14 @@ export interface NetworkInfo {
 export const PAYMENT_INFO_ACCOUNT = '5CXQZrh1MSgnGGCdJu3tqvRfCv7t5iQXGGV9UKotrbfhkavs'
 
 export const networkList = {
+  'ggx-sydney': {
+    chainId: 'ggx-sydney',
+    explorerNetworkName: 'ggx-sydney',
+    rpcUrl: 'wss://sydney-archive.dev.ggxchain.io:9944',
+    wsGraphqlUrl: 'wss://multix.dev.ggxchain.io/graphql/graphql',
+    httpGraphqlUrl: 'https://multix.dev.ggxchain.io/graphql/graphql',
+    logo: chainsPolkadotCircleSVG
+  } as NetworkInfo,
   polkadot: {
     chainId: 'polkadot',
     explorerNetworkName: 'polkadot',
@@ -199,6 +207,7 @@ export const networkList = {
 }
 
 export const polkadotNetworksAndParachains = [
+  'ggx-sydney',
   'polkadot',
   'assethub-dot',
   'acala',
